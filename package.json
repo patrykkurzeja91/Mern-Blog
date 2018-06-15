@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hashnode/mern-starter.git"
+    "url": "https://github.com/patraspan/project-22.4-mern-starter.git"
   },
   "bugs": {
     "url": "https://github.com/Hashnode/mern-starter/issues"
