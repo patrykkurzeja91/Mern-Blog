@@ -90,7 +90,7 @@ PostDetailPage.need = [params => {
 function mapStateToProps(state, props) {
   return {
     post: getPost(state, props.params.cuid),
-    showEditPost: getShowEditPost(state)
+    showEditPost: getShowEditPost(state),
   };
 }
 function mapDispatchToProps(dispatch, props) {
@@ -117,7 +117,7 @@ PostDetailPage.propTypes = {
     showEditPost: PropTypes.bool.isRequired,
     toggleEditPost: PropTypes.func.isRequired,
     editPostRequest: PropTypes.func.isRequired,
-  })
+  }),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(PostDetailPage));
