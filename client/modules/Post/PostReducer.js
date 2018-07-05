@@ -1,8 +1,8 @@
 import {
   ADD_POST,
+  EDIT_POST,
   ADD_POSTS,
   DELETE_POST,
-  EDIT_POST,
 } from './PostActions';
 
 // Initial State

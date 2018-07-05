@@ -22,7 +22,7 @@ import { fetchPost, editPostRequest } from '../../PostActions';
 // Import Selectors
 import { getPost } from '../../PostReducer';
 // is that necessary???
-import toggleEditPost from '../../../App/AppActions';
+import { toggleEditPost } from '../../../App/AppActions';
 
 
 export class PostDetailPage extends React.Component {
@@ -49,7 +49,7 @@ export class PostDetailPage extends React.Component {
     return (
       <div className={styles['form-content']}>
         <h2 className={styles['form-title']}><FormattedMessage id="editPost" /></h2>
-        <input placeholder={this.props.intl.messages.authorName} className={styles['form-field']} name="name" value={this.state.title} onChange={this.handleInputChange} type="text" />
+        <input placeholder={this.props.intl.messages.authorName} className={styles['form-field']} name="name" value={this.state.name} onChange={this.handleInputChange} type="text" />
         <input placeholder={this.props.intl.messages.postTitle} className={styles['form-field']} name="title" value={this.state.title} onChange={this.handleInputChange} type="text" />
         <textarea placeholder={this.props.intl.messages.postContent} className={styles['form-field']} name="content" value={this.state.content} onChange={this.handleInputChange} />
         <a className={styles['post-submit-button']} href="#" onClick={this.handleEditPost}><FormattedMessage id="submit" /></a>
@@ -66,16 +66,15 @@ export class PostDetailPage extends React.Component {
     );
   }
   render() {
-    const { props } = this;
     return (
       <div>
-        <Helmet title={props.post.title} />
-        <a href="#" className={styles['edit-post-button']} onClick={this.props.toggleEditPost}><FormattedMessage id="editPost" /></a>
-        <div className={`${styles['single-post']} ${styles['post-detail']}`}>
-          <h3 className={styles['post-title']}>{props.post.title}</h3>
-          <p className={styles['author-name']}><FormattedMessage id="by" /> {props.post.name}</p>
-          <p className={styles['post-desc']}>{props.post.content}</p>
-        </div>
+        <Helmet title={this.props.post.title} />
+        <a className={styles['edit-post-button']} href="#" onClick={this.props.toggleEditPost}><FormattedMessage id="editPost" /></a>
+        {
+          this.props.showEditPost
+            ? this.renderPostForm()
+            : this.renderPost()
+        }
       </div>
     );
   }
@@ -114,10 +113,10 @@ PostDetailPage.propTypes = {
       postTitle: PropTypes.string.isRequired,
       postContent: PropTypes.string.isRequired,
     }).isRequired,
-    showEditPost: PropTypes.bool.isRequired,
-    toggleEditPost: PropTypes.func.isRequired,
-    editPostRequest: PropTypes.func.isRequired,
-  }),
+  }).isRequired,
+  showEditPost: PropTypes.bool.isRequired,
+  toggleEditPost: PropTypes.func.isRequired,
+  editPostRequest: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(PostDetailPage));

@@ -1,5 +1,5 @@
 .header {
-  background: #eee url('../../header-bk.png') center;
+  background: rgb(2, 130, 189) url('../../header-bk.png') center;
   background-size: cover;
   border-bottom: 1px solid #ccc;
 }
@@ -8,14 +8,14 @@
   width: 100%;
   max-width: 980px;
   margin: auto;
-  padding: 64px 16px;
+  padding: 32px 16px;
   overflow: auto;
 }
 
 .site-title {
+  display: block;
   font-weight: 300;
-  font-size: 42px;
-  float: left;
+  font-size: 32px;
 }
 
 .site-title a {
@@ -24,13 +24,18 @@
 }
 
 .add-post-button {
-  display: inline-block;
+  display: block;
   color: #FFF;
   background: #03A9F4;
   padding: 8px 16px;
   text-decoration: none;
   border-radius: 1000px;
-  float: right;
+  float: left;
+  transition: 500ms;
+}
+.add-post-button:hover {
+  color: #03A9F4; 
+  background:#FFF;
 }
 
 .language-switcher {
@@ -39,7 +44,8 @@
 
 .language-switcher ul {
   list-style: none;
-  width: 980px;
+  width: 100%;
+  max-width: 980px;
   margin: auto;
   text-align: right;
 }

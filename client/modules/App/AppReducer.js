@@ -8,6 +8,7 @@ const initialState = {
 };
 
 const AppReducer = (state = initialState, action) => {
+  console.log(state, action);
   switch (action.type) {
     case TOGGLE_ADD_POST:
       return {
