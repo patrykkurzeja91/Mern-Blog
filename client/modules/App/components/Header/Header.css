@@ -24,3 +24,9 @@
   text-decoration: none;
   color: #FFF;
 }
+.container {
+  width: 100%;
+  max-width: 980px;
+  min-height: 60vh;
+  margin: 0 auto;
+}

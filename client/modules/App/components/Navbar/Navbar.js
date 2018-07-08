@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap';
+
 // Import Style
-import './Navbar.css';
 
 
 export function Navbar(props) {
@@ -13,7 +11,7 @@ export function Navbar(props) {
   );
   return (
     <nav className={"navbar navbar-expand-lg navbar-dark bg-dark"}>
-      <div className="container">
+      <div className={"container"}>
         <Link className="navbar-brand" to={'/home'}> Mern Blog
         </Link>
         <button
@@ -30,7 +28,7 @@ export function Navbar(props) {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
+            <li className="nav-item">
               <Link className="nav-link" to={'/home'}> Home
               </Link>
             </li>

@@ -72,6 +72,12 @@
     margin-top: 16px;
   }
 }
+.container {
+  width: 100%;
+  max-width: 980px;
+  min-height: 60vh;
+  margin: 0 auto;
+}
 .nav-link {
   color: red;
 }
