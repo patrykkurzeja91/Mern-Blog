@@ -1,69 +1,21 @@
-/* .single-post {
-  margin: 20px 0;
-  padding: 15px;
-  border-radius: 2px;
+.listView {
+    width: 100%;
+    /* max-width: 980px; */
+    min-height: calc(100vh - 143px);
+    margin: 0 auto;
 }
-
-.post-title{
-  font-size: 28px;
-  margin-bottom: 16px;
-  font-weight: 400;
-  color: #616161;
+.edit-post-wrapper {
+  display: block;
+  width: 100%;
 }
-
-.post-title a{
-  text-decoration: none;
-  color: #616161;
-}
-
-.author-name{
-  font-size: 16px;
-  margin-bottom: 16px;
-  color: #757575;
-}
-
-.post-desc{
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 8px;
-}
-
-.post-action a{
-  color: #555;
-  text-decoration: none;
-  font-size: 14px;
-  font-style: italic;
-}
-
-.post-action a:hover{
-  color: #EF5350;
-}
-
-.divider{
-  border: 0;
-  height: 1px;
-  background: #ccc;
-  width: 250px;
-  margin: 32px auto 0;
-}
-
-.post-detail .post-title{
-  font-size: 42px;
-  color: #454545;
-}
-
-.post-detail .post-desc{
-  font-size: 16px;
-  color: #555;
-} */
 
 .edit-post-button {
-  color: #FFF;
-  background: #03A9F4;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 1000px;
   float: right;
+  margin-right: 15px;
+}
+
+.cancel-post-button {
+margin-left: 15px
 }
 
 .form {
@@ -77,7 +29,7 @@
 .form-content{
   width: 100%;
   max-width: 600px;
-  margin: auto;
+  margin: 30px auto;
   font-size: 14px;
 }
 
@@ -104,7 +56,7 @@
 textarea {
   min-height: 200px;
 }
-
+/* 
 .post-submit-button {
   display: inline-block;
   padding: 8px 16px;
@@ -113,7 +65,7 @@ textarea {
   background: #03A9F4;
   text-decoration: none;
   border-radius: 4px;
-}
+} */
 
 .appear {
   display: block;
@@ -126,7 +78,8 @@ textarea {
 }
 
 .post-title{
-  font-size: 28px;
+  font-size: 32px;
+  margin-top: 38px;
   margin-bottom: 16px;
   font-weight: 400;
   color: #616161;
@@ -138,17 +91,63 @@ textarea {
 }
 
 .author-name{
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 16px;
+  color: #666;
+}
+.post-desc-inside {
+  font-size: 16px;
   color: #757575;
+  margin-bottom: 8px;
+  line-height: 1.4em;
+  text-align: justify;
 }
 
-.post-desc{
-  font-size: 14px;
+.post-desc {
+  font-size: 16px;
   color: #888;
   margin-bottom: 8px;
+  /* hide text if it more than N lines  */
+  overflow: hidden;
+  /* for set '...' in absolute position */
+  position: relative; 
+  /* use this value to count block height */
+  line-height: 1.4em;
+  /* max-height = line-height (1.2) * lines max number (3) */
+  max-height: 4.2em; 
+  /* fix problem when last visible word doesn't adjoin right side  */
+  text-align: justify;
+  
+  /* */
+  margin-right: -1em;
+  padding-right: 1em;
+  
 }
-
+.post-desc:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+.post-desc:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  width: 1em;
+  /* set width and height */
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+}
+.post-action {
+  padding-top: 10px;
+}
 .post-action a{
   color: #555;
   text-decoration: none;

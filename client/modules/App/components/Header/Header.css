@@ -1,13 +1,14 @@
 .header {
-  background:#343A40;
+  background: #3f4347 url('./connectwork.png') center;
   background-size: contain;
-  border-bottom: 1px solid #ccc;
-  background-repeat: repeat-x;
+  /* border-bottom: 1px solid #ccc; */
+  /* background-repeat: repeat-x; */
 }
 
 .content {
   width: 100%;
   overflow: auto;
+  padding: 20px 0;
 }
 
 .site-title {
@@ -26,7 +27,6 @@
 }
 .container {
   width: 100%;
-  max-width: 980px;
-  min-height: 60vh;
+  min-height: calc(100vh - 143px);
   margin: 0 auto;
 }

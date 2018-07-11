@@ -1,18 +1,19 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Import Style
-
+import styles from './Navbar.css';
 
 export function Navbar(props) {
   const languageNodes = props.intl.enabledLanguages.map(
-    lang => <a key={lang} onClick={() => props.switchLanguage(lang)} className="dropdown-item">{lang}</a>
+    lang => <a key={lang} onClick={() => props.switchLanguage(lang)} className="dropdown-item lang">{lang}</a>
   );
   return (
     <nav className={"navbar navbar-expand-lg navbar-dark bg-dark"}>
       <div className={"container"}>
-        <Link className="navbar-brand" to={'/home'}> Mern Blog
+        <Link className="navbar-brand" to={'/home'}><FontAwesomeIcon className={styles.stroopwafel} icon="stroopwafel" /> Mern Blog
         </Link>
         <button
           className="navbar-toggler"
@@ -37,12 +38,12 @@ export function Navbar(props) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={'/'}> Posts
+              <Link className="nav-link" to={'/'}> Blog
               </Link>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><FormattedMessage id="switchLanguage" /></a>
-              <div className="dropdown-menu">
+              <div className={(styles['dropdown-menu']) + (" ") + ("dropdown-menu")}>
                 {languageNodes}
               </div>
             </li>
@@ -59,7 +60,6 @@ Navbar.contextTypes = {
 };
 
 Navbar.propTypes = {
-  toggleAddPost: PropTypes.func.isRequired,
   switchLanguage: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };

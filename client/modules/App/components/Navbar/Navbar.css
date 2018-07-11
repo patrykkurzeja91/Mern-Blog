@@ -71,6 +71,10 @@
     float: left;
     margin-top: 16px;
   }
+  .dropdown-menu {
+    position: absolute;
+    float: left;
+  }
 }
 .container {
   width: 100%;
@@ -86,4 +90,16 @@
 }
 .btn-outline-secondary {
   margin-right: 20px;
+}
+.lang {
+  display: inline-block;
+  color: #03A9F4;
+}
+.dropdown-menu {
+  position: absolute;
+  float: left;
+}
+.stroopwafel {
+  margin-right: 10px;
+  color: #61DAFB;
 }

@@ -12,8 +12,9 @@ import {
 import {
   getShowEditPost,
 } from '../../../App/AppReducer';
-
+import { Link } from 'react-router';
 // Import Style
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '../../components/PostListItem/PostListItem.css';
 
 // Import Actions
@@ -45,31 +46,60 @@ export class PostDetailPage extends React.Component {
     this.props.toggleEditPost();
     this.props.editPostRequest(this.state);
   }
+  handleCancelPost = () => {
+    this.props.toggleEditPost();
+  }
   renderPostForm = () => {
     return (
       <div className={styles['form-content']}>
         <h2 className={styles['form-title']}><FormattedMessage id="editPost" /></h2>
-        <input placeholder={this.props.intl.messages.authorName} className={styles['form-field']} name="name" value={this.state.name} onChange={this.handleInputChange} type="text" />
-        <input placeholder={this.props.intl.messages.postTitle} className={styles['form-field']} name="title" value={this.state.title} onChange={this.handleInputChange} type="text" />
+        <input
+          placeholder={this.props.intl.messages.authorName}
+          className={styles['form-field']}
+          name="name"
+          value={this.state.name}
+          onChange={this.handleInputChange}
+          type="text"
+        />
+        <input
+          placeholder={this.props.intl.messages.postTitle}
+          className={styles['form-field']}
+          name="title"
+          value={this.state.title}
+          onChange={this.handleInputChange}
+          type="text"
+        />
         <textarea placeholder={this.props.intl.messages.postContent} className={styles['form-field']} name="content" value={this.state.content} onChange={this.handleInputChange} />
-        <a className={styles['post-submit-button']} href="#" onClick={this.handleEditPost}><FormattedMessage id="submit" /></a>
+        <a className={'btn btn-success'} href="#" onClick={this.handleEditPost}><FormattedMessage id="accept" /></a>
+        <a className={(styles['cancel-post-button']) + (' ') +'btn btn-danger'} href="#" onClick={this.handleCancelPost}><FormattedMessage id="cancel" /></a>
       </div>
     );
   }
   renderPost = () => {
     return (
       <div className={`${styles['single-post']} ${styles['post-detail']}`}>
+        <Link to={'/'} className={(styles['edit-post-button']) + (' ') + ('btn btn-primary')}> Back
+        </Link>
+        <a
+          className={(styles['edit-post-button']) + (' ') + ('btn btn-warning')} 
+          href="#"
+          onClick={this.props.toggleEditPost}
+        >
+          <FormattedMessage id="editPost" />
+          <FontAwesomeIcon icon="pencil-alt" />
+        </a>
         <h3 className={styles['post-title']}>{this.props.post.title}</h3>
-        <p className={styles['author-name']}><FormattedMessage id="by" />{this.props.post.name}</p>
-        <p className={styles['post-desc']}>{this.props.post.content}</p>
+        <p className={styles['author-name']}><FormattedMessage id="by" /> {this.props.post.name}</p>
+        <p className={styles['post-desc-inside']}>{this.props.post.content}</p>
       </div>
     );
   }
   render() {
     return (
-      <div>
+      <div >
         <Helmet title={this.props.post.title} />
-        <a className={styles['edit-post-button']} href="#" onClick={this.props.toggleEditPost}><FormattedMessage id="editPost" /></a>
+        <div className={styles['edit-post-wrapper']}>
+        </div>
         {
           this.props.showEditPost
             ? this.renderPostForm()

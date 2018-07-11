@@ -2,6 +2,8 @@ export default {
   locale: 'fr',
   messages: {
     siteTitle: 'MERN blog de démarrage',
+    about: 'À propos de moi',
+    home: 'Accueil',
     addPost: 'Ajouter Poster',
     editPost: 'Editer Poster',
     switchLanguage: 'Changer de langue',
@@ -13,6 +15,8 @@ export default {
     postTitle: 'Titre de l\'article',
     postContent: 'Contenu après',
     submit: 'Soumettre',
+    accept: 'Accepter',
+    cancel: 'Annuler',
     comment: `user {name} {value, plural,
     	  =0 {does not have any comments}
     	  =1 {has # comment}

@@ -24,7 +24,7 @@ export class PostCreateWidget extends Component {
           <input placeholder={this.props.intl.messages.authorName} className={styles['form-field']} ref="name" />
           <input placeholder={this.props.intl.messages.postTitle} className={styles['form-field']} ref="title" />
           <textarea placeholder={this.props.intl.messages.postContent} className={styles['form-field']} ref="content" />
-          <a className={styles['post-submit-button']} href="#" onClick={this.addPost}><FormattedMessage id="submit" /></a>
+          <a className={'btn btn-success'} href="#" onClick={this.addPost}><FormattedMessage id="submit" /></a> 
         </div>
       </div>
     );

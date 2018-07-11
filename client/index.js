@@ -1,14 +1,26 @@
 /**
+ * Import bootstrap to all page
+ */
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap';
+/**
  * Client entry point
  */
+// Import fontawesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faStroopwafel, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { dom } from '@fortawesome/fontawesome-svg-core'
+library.add(fab, faStroopwafel, faPencilAlt );
+dom.watch();
+
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
 import { configureStore } from './store';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap';
+
 // Initialize store
 const store = configureStore(window.__INITIAL_STATE__);
 const mountApp = document.getElementById('root');
