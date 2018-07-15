@@ -5,6 +5,8 @@ export const ADD_POST = 'ADD_POST';
 export const ADD_POSTS = 'ADD_POSTS';
 export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
+export const THUMB_UP = 'THUMB_UP';
+export const THUMB_DOWN = 'THUMB_DOWN';
 
 // Export Actions
 export function addPost(post) {
@@ -21,6 +23,7 @@ export function addPostRequest(post) {
         name: post.name,
         title: post.title,
         content: post.content,
+        votes: post.votes,
       },
     }).then(res => dispatch(addPost(res.post)));
   };
@@ -74,7 +77,38 @@ export function editPostRequest(cuid, post) {
       post:
       { name: post.name,
       title: post.title,
-      content: post.content },
+      content: post.content,
+     },
     }).then(() => dispatch(editPost(cuid, post)));
+  };
+}
+export function thumbUp(cuid, votes) {
+  return {
+    type: THUMB_UP,
+    cuid,
+    votes,
+  };
+}
+export function thumbUpRequest(cuid, newVotes) {
+  return (dispatch) => {
+    return callApi(`posts/${cuid}`, 'put', {
+      post:
+      { votes: newVotes },
+    }).then(() => dispatch(thumbUp(cuid, newVotes)));
+  };
+}
+export function thumbDown(cuid, votes) {
+  return {
+    type: THUMB_DOWN,
+    cuid,
+    votes,
+  };
+}
+export function thumbDownRequest(cuid, newVotes) {
+  return (dispatch) => {
+    return callApi(`posts/${cuid}`, 'put', {
+      post:
+      { votes: newVotes },
+    }).then(() => dispatch(thumbDown(cuid, newVotes)));
   };
 }

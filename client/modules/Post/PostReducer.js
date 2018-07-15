@@ -3,6 +3,8 @@ import {
   EDIT_POST,
   ADD_POSTS,
   DELETE_POST,
+  THUMB_DOWN,
+  THUMB_UP,
 } from './PostActions';
 
 // Initial State
@@ -33,7 +35,22 @@ const PostReducer = (state = initialState, action) => {
           return post.cuid === action.cuid ? Object.assign({}, post, action.post) : post;
         }),
       };
-
+    case THUMB_UP:
+      return {
+        data: state.data.map(post => {
+          return post.cuid === action.cuid
+          ? Object.assign({}, post, { votes: post.votes + 1 })
+          : post;
+        }),
+      };
+    case THUMB_DOWN:
+      return {
+        data: state.data.map(post => {
+          return post.cuid === action.cuid
+          ? Object.assign({}, post, { votes: post.votes - 1 })
+          : post;
+        }),
+      };
     default:
       return state;
   }

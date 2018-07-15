@@ -12,6 +12,18 @@
 .edit-post-button {
   float: right;
   margin-right: 15px;
+  overflow: hidden;
+}
+.edit-post-button > svg {
+  margin-left: -10px;
+  transform: translateX(150%);
+  opacity: 0;
+  transition: all ease 200ms;
+}
+.edit-post-button:hover > svg {
+  margin-left: 10px;
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .cancel-post-button {
@@ -147,12 +159,17 @@ textarea {
 }
 .post-action {
   padding-top: 10px;
+  display: inline-block;
+  margin-right: 3em;
 }
 .post-action a{
   color: #555;
   text-decoration: none;
   font-size: 14px;
   font-style: italic;
+}
+.post-action span {
+  padding-left: 8px;
 }
 
 .post-action a:hover{
@@ -175,4 +192,21 @@ textarea {
 .post-detail .post-desc{
   font-size: 16px;
   color: #555;
+}
+.thumbs {
+  display: inline-block;
+
+}
+.thumbs span {
+  color: #555;
+  padding: 5px 5px;
+}
+.thumbUp {
+  color: #28a745;
+  cursor: pointer;
+  
+}
+.thumbDown {
+  color: #dc3545;
+  cursor: pointer;
 }
