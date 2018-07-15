@@ -1,5 +1,5 @@
 .header {
-  background: #3f4347 url('./connectwork.png') center;
+  background: #3f4347 url('/client/modules/App/components/Header/connectwork.png') center;
   background-size: contain;
   /* border-bottom: 1px solid #ccc; */
   /* background-repeat: repeat-x; */

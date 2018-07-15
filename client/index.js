@@ -1,11 +1,9 @@
-/**
+ /**
  * Import bootstrap to all page
  */
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
-/**
- * Client entry point
- */
+
 // Import fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -19,7 +17,9 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
 import { configureStore } from './store';
-
+/**
+ * Client entry point
+ */
 
 // Initialize store
 const store = configureStore(window.__INITIAL_STATE__);

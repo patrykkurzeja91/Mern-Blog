@@ -11,17 +11,22 @@ export function Header(props, context) {
       <div className="container">
         <div className={styles.content}>
           <h1 className={styles['site-title']}>
-            {/* <Link to="/" ><FormattedMessage id="siteTitle" /></Link> */}
-            {
+           {
             context.router.isActive('/', true)
-              ? <Link to="/" ><FormattedMessage id="siteTitle" /></Link>
-              : (context.router.isActive('/about', true)
-              ? <Link to="/about" ><FormattedMessage id="about" /></Link>
-              : ((context.router.isActive('/home', true)
-              ? <Link to="/home" ><FormattedMessage id="home" /></Link>
-              : null)))
-          } 
-          </h1> 
+            ? <Link to="/" ><FormattedMessage id="siteTitle" /></Link>
+            : null
+          }
+           {
+            context.router.isActive('/about', true)
+            ? <Link to="/about" ><FormattedMessage id="about" /></Link>
+            : null
+          }
+           {
+            context.router.isActive('/home', true)
+            ? <Link to="/home" ><FormattedMessage id="home" /></Link>
+            : null
+          }
+          </h1>
           {
             context.router.isActive('/', true)
               ? <button className="btn btn-primary" href="#" onClick={props.toggleAddPost}><FormattedMessage id="addPost" /></button>
