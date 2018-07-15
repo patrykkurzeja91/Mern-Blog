@@ -24,9 +24,9 @@ class PostListPage extends Component {
     }
   };
 
-  handleAddPost = (name, title, content, votes) => {
+  handleAddPost = (name, title, content) => {
     this.props.dispatch(toggleAddPost());
-    this.props.dispatch(addPostRequest({ name, title, content, votes }));
+    this.props.dispatch(addPostRequest({ name, title, content }));
   };
   handleThumbUp = (cuid, votes) => {
     const newVotes = Number(votes) + 1;

@@ -93,10 +93,11 @@ export function thumbUpRequest(cuid, newVotes) {
   return (dispatch) => {
     return callApi(`posts/${cuid}`, 'put', {
       post:
-      { votes: newVotes },
+      { votesUp: newVotes },
     }).then(() => dispatch(thumbUp(cuid, newVotes)));
   };
 }
+
 export function thumbDown(cuid, votes) {
   return {
     type: THUMB_DOWN,
