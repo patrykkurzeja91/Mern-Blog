@@ -1,4 +1,4 @@
-## See demo on ![Heroku](https://mern-blog-pk.herokuapp.com/home)
+## See demo on [Heroku](https://mern-blog-pk.herokuapp.com/home)
 
 
 ![](http://res.cloudinary.com/hashnode/image/upload/w_200/v1466495663/static_imgs/mern/v2/mernio-logo.png)
