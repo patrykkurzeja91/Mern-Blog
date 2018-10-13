@@ -1,6 +1,6 @@
 /* Home styles */
 .jumbotron {
-    min-height: calc(100vh - 143px);
+    min-height: calc(100vh - 240px);
     margin: 0;
     display: flex;
     justify-content: center;

@@ -1,7 +1,11 @@
-.listView {
+.full-height {
+  min-height: calc(100vh - 201px);
+  padding: 40px 0;
+}
+.list-view {
     width: 100%;
     /* max-width: 980px; */
-    min-height: calc(100vh - 143px);
+    min-height: calc(100vh - 277px);
     margin: 0 auto;
 }
 .edit-post-wrapper {
@@ -39,6 +43,7 @@ margin-left: 15px
 }
 
 .form-content{
+  /* min-height: calc(100vh - 202px); */
   width: 100%;
   max-width: 600px;
   margin: 30px auto;
@@ -84,7 +89,7 @@ textarea {
 }
 
 .single-post {
-  margin: 20px 0;
+  /* margin: 20px 0; */
   padding: 15px;
   border-radius: 2px;
 }

@@ -33,6 +33,7 @@ export class PostDetailPage extends React.Component {
       name: this.props.post.name,
       title: this.props.post.title,
       content: this.props.post.content,
+      votes: this.props.post.votes,
     };
   }
   handleInputChange = (e) => {
@@ -71,26 +72,25 @@ export class PostDetailPage extends React.Component {
         />
         <textarea placeholder={this.props.intl.messages.postContent} className={styles['form-field']} name="content" value={this.state.content} onChange={this.handleInputChange} />
         <a className={'btn btn-success'} href="#" onClick={this.handleEditPost}><FormattedMessage id="accept" /></a>
-        <a className={(styles['cancel-post-button']) + (' ') +'btn btn-danger'} href="#" onClick={this.handleCancelPost}><FormattedMessage id="cancel" /></a>
+        <a className={`${styles['cancel-post-button']} btn btn-danger`} href="#" onClick={this.handleCancelPost}><FormattedMessage id="cancel" /></a>
       </div>
     );
   }
   renderPost = () => {
     return (
-      <div className={`${styles['single-post']} ${styles['post-detail']}`}>
-        <Link to={'/'} className={(styles['edit-post-button']) + (' ') + ('btn btn-primary')}> Back
-        </Link>
-        <a
-          className={(styles['edit-post-button']) + (' ') + ('btn btn-warning')} 
-          href="#"
-          onClick={this.props.toggleEditPost}
-        >
-          <FormattedMessage id="editPost" />
-          <FontAwesomeIcon icon="pencil-alt" />
-        </a>
-        <h3 className={styles['post-title']}>{this.props.post.title}</h3>
-        <p className={styles['author-name']}><FormattedMessage id="by" /> {this.props.post.name}</p>
-        <p className={styles['post-desc-inside']}>{this.props.post.content}</p>
+      <div className={`container ${styles['full-height']}`}>
+        <div className={`${styles['single-post']} ${styles['post-detail']}`}>
+          <Link to={'/'} className={`${styles['edit-post-button']} btn btn-primary`}> Back
+          </Link>
+          <a className={`${styles['edit-post-button']} btn btn-warning`} href="#" onClick={this.props.toggleEditPost}>
+            <FormattedMessage id="editPost" />
+            <FontAwesomeIcon icon="pencil-alt" />
+          </a>
+          <h3 className={styles['post-title']}>{this.props.post.title}</h3>
+          <p className={styles['author-name']}>
+            <FormattedMessage id="by" /> {this.props.post.name}</p>
+          <p className={styles['post-desc-inside']}>{this.props.post.content}</p>
+        </div>
       </div>
     );
   }
@@ -136,6 +136,7 @@ PostDetailPage.propTypes = {
     content: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
   }).isRequired,
   intl: PropTypes.shape({
     messages: PropTypes.shape({

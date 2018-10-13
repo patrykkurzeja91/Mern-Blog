@@ -7,9 +7,9 @@ import 'bootstrap';
 // Import fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faStroopwafel, faPencilAlt, faTrash, faArrowAltCircleUp, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faStroopwafel, faPencilAlt, faTrash, faArrowAltCircleUp, faArrowAltCircleDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { dom } from '@fortawesome/fontawesome-svg-core'
-library.add(fab, faStroopwafel, faPencilAlt , faArrowAltCircleUp, faArrowAltCircleDown, faTrash);
+library.add(fab, faStroopwafel, faPencilAlt , faArrowAltCircleUp, faArrowAltCircleDown, faTrash, faPlus);
 dom.watch();
 
 import React from 'react';

@@ -30,3 +30,20 @@
   min-height: calc(100vh - 143px);
   margin: 0 auto;
 }
+
+.add-post-button {
+  
+  margin-right: 15px;
+  overflow: hidden;
+}
+.add-post-button > svg {
+  margin-left: -10px;
+  transform: translateX(150%);
+  opacity: 0;
+  transition: all ease 200ms;
+}
+.add-post-button:hover > svg {
+  margin-left: 10px;
+  transform: translateX(0);
+  opacity: 1;
+}

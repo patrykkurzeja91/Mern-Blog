@@ -41,9 +41,9 @@ export function Navbar(props) {
               <Link className="nav-link" to={'/'}> Blog
               </Link>
             </li>
-            <li className="nav-item dropdown">
+            <li className="text-right nav-item dropdown">
               <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><FormattedMessage id="switchLanguage" /></a>
-              <div className={(styles['dropdown-menu']) + (" ") + ("dropdown-menu")}>
+              <div className={`${styles['dropdown-menu']} dropdown-menu`}>
                 {languageNodes}
               </div>
             </li>

@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 // Import Style
 import styles from './Header.css';
@@ -29,7 +31,9 @@ export function Header(props, context) {
           </h1>
           {
             context.router.isActive('/', true)
-              ? <button className="btn btn-primary" href="#" onClick={props.toggleAddPost}><FormattedMessage id="addPost" /></button>
+              ? <button className={`${styles['add-post-button']} btn btn-primary`} href="#" onClick={props.toggleAddPost}><FormattedMessage id="addPost" />
+                <FontAwesomeIcon className={styles.plus} icon="plus" />
+              </button>
               : null
           }
         </div>

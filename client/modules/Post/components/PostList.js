@@ -1,20 +1,19 @@
 import React, { PropTypes } from 'react';
-
+import styles from './PostListItem/PostListItem.css';
 // Import Components
 import PostListItem from './PostListItem/PostListItem';
-import './PostListItem/PostListItem.css';
 
 function PostList(props) {
   return (
-    <div className="listView container">
+    <div className={`${styles['list-view']} container`}>
       {
         props.posts.map(post => (
           <PostListItem
             post={post}
             key={post.cuid}
             onDelete={() => props.handleDeletePost(post.cuid)}
-            thumbUp={() => props.handleThumbUp(post.cuid, post.votes)}
-            thumbDown={() => props.handleThumbDown(post.cuid, post.votes)}
+            onThumbUp={() => props.handleThumbUp(post.cuid, post.votes)}
+            onThumbDown={() => props.handleThumbDown(post.cuid, post.votes)}
           />
         ))
       }
