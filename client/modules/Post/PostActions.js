@@ -23,7 +23,6 @@ export function addPostRequest(post) {
         name: post.name,
         title: post.title,
         content: post.content,
-        votes: post.votes,
       },
     }).then(res => dispatch(addPost(res.post)));
   };
