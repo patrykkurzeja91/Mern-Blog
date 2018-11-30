@@ -34,10 +34,8 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: [
-            'react',
-            'es2015',
-            'stage-0',
-          ],
+            ["es2015", { "modules": false }]
+    ],
           plugins: [
             [
               'babel-plugin-webpack-loaders', {

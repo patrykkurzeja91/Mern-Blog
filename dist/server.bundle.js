@@ -50,19 +50,19 @@
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = require("react-intl");
+	module.exports = require("react-router");
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
-	module.exports = require("react-router");
+	module.exports = require("@fortawesome/react-fontawesome");
 
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = require("@fortawesome/react-fontawesome");
+	module.exports = require("react-intl");
 
 /***/ },
 /* 4 */
@@ -130,7 +130,7 @@
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
 	  var action = arguments[1];
 	
-	  console.log(state, action);
+	  // console.log(state, action);
 	  switch (action.type) {
 	    case _AppActions.TOGGLE_ADD_POST:
 	      return {
@@ -211,8 +211,7 @@
 	      post: {
 	        name: post.name,
 	        title: post.title,
-	        content: post.content,
-	        votes: post.votes
+	        content: post.content
 	      }
 	    }).then(function (res) {
 	      return dispatch(addPost(res.post));
@@ -285,12 +284,12 @@
 	    votes: votes
 	  };
 	}
-	function thumbUpRequest(cuid, newVotes) {
+	function thumbUpRequest(cuid, votes) {
 	  return function (dispatch) {
 	    return (0, _apiCaller2.default)('posts/' + cuid, 'put', {
-	      post: { votesUp: newVotes }
+	      post: { votes: votes }
 	    }).then(function () {
-	      return dispatch(thumbUp(cuid, newVotes));
+	      return dispatch(thumbUp(cuid, votes));
 	    });
 	  };
 	}
@@ -302,12 +301,12 @@
 	    votes: votes
 	  };
 	}
-	function thumbDownRequest(cuid, newVotes) {
+	function thumbDownRequest(cuid, votes) {
 	  return function (dispatch) {
 	    return (0, _apiCaller2.default)('posts/' + cuid, 'put', {
-	      post: { votes: newVotes }
+	      post: { votes: votes }
 	    }).then(function () {
-	      return dispatch(thumbDown(cuid, newVotes));
+	      return dispatch(thumbDown(cuid, votes));
 	    });
 	  };
 	}
@@ -442,7 +441,7 @@
 	});
 	exports.localizationData = exports.enabledLanguages = undefined;
 	
-	var _reactIntl = __webpack_require__(1);
+	var _reactIntl = __webpack_require__(3);
 	
 	var _intl = __webpack_require__(57);
 	
@@ -666,7 +665,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouter = __webpack_require__(2);
+	var _reactRouter = __webpack_require__(1);
 	
 	var _logo = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4NDEuOSA1OTUuMyI+DQogICAgPGcgZmlsbD0iIzYxREFGQiI+DQogICAgICAgIDxwYXRoIGQ9Ik02NjYuMyAyOTYuNWMwLTMyLjUtNDAuNy02My4zLTEwMy4xLTgyLjQgMTQuNC02My42IDgtMTE0LjItMjAuMi0xMzAuNC02LjUtMy44LTE0LjEtNS42LTIyLjQtNS42djIyLjNjNC42IDAgOC4zLjkgMTEuNCAyLjYgMTMuNiA3LjggMTkuNSAzNy41IDE0LjkgNzUuNy0xLjEgOS40LTIuOSAxOS4zLTUuMSAyOS40LTE5LjYtNC44LTQxLTguNS02My41LTEwLjktMTMuNS0xOC41LTI3LjUtMzUuMy00MS42LTUwIDMyLjYtMzAuMyA2My4yLTQ2LjkgODQtNDYuOVY3OGMtMjcuNSAwLTYzLjUgMTkuNi05OS45IDUzLjYtMzYuNC0zMy44LTcyLjQtNTMuMi05OS45LTUzLjJ2MjIuM2MyMC43IDAgNTEuNCAxNi41IDg0IDQ2LjYtMTQgMTQuNy0yOCAzMS40LTQxLjMgNDkuOS0yMi42IDIuNC00NCA2LjEtNjMuNiAxMS0yLjMtMTAtNC0xOS43LTUuMi0yOS00LjctMzguMiAxLjEtNjcuOSAxNC42LTc1LjggMy0xLjggNi45LTIuNiAxMS41LTIuNlY3OC41Yy04LjQgMC0xNiAxLjgtMjIuNiA1LjYtMjguMSAxNi4yLTM0LjQgNjYuNy0xOS45IDEzMC4xLTYyLjIgMTkuMi0xMDIuNyA0OS45LTEwMi43IDgyLjMgMCAzMi41IDQwLjcgNjMuMyAxMDMuMSA4Mi40LTE0LjQgNjMuNi04IDExNC4yIDIwLjIgMTMwLjQgNi41IDMuOCAxNC4xIDUuNiAyMi41IDUuNiAyNy41IDAgNjMuNS0xOS42IDk5LjktNTMuNiAzNi40IDMzLjggNzIuNCA1My4yIDk5LjkgNTMuMiA4LjQgMCAxNi0xLjggMjIuNi01LjYgMjguMS0xNi4yIDM0LjQtNjYuNyAxOS45LTEzMC4xIDYyLTE5LjEgMTAyLjUtNDkuOSAxMDIuNS04Mi4zem0tMTMwLjItNjYuN2MtMy43IDEyLjktOC4zIDI2LjItMTMuNSAzOS41LTQuMS04LTguNC0xNi0xMy4xLTI0LTQuNi04LTkuNS0xNS44LTE0LjQtMjMuNCAxNC4yIDIuMSAyNy45IDQuNyA0MSA3Ljl6bS00NS44IDEwNi41Yy03LjggMTMuNS0xNS44IDI2LjMtMjQuMSAzOC4yLTE0LjkgMS4zLTMwIDItNDUuMiAyLTE1LjEgMC0zMC4yLS43LTQ1LTEuOS04LjMtMTEuOS0xNi40LTI0LjYtMjQuMi0zOC03LjYtMTMuMS0xNC41LTI2LjQtMjAuOC0zOS44IDYuMi0xMy40IDEzLjItMjYuOCAyMC43LTM5LjkgNy44LTEzLjUgMTUuOC0yNi4zIDI0LjEtMzguMiAxNC45LTEuMyAzMC0yIDQ1LjItMiAxNS4xIDAgMzAuMi43IDQ1IDEuOSA4LjMgMTEuOSAxNi40IDI0LjYgMjQuMiAzOCA3LjYgMTMuMSAxNC41IDI2LjQgMjAuOCAzOS44LTYuMyAxMy40LTEzLjIgMjYuOC0yMC43IDM5Ljl6bTMyLjMtMTNjNS40IDEzLjQgMTAgMjYuOCAxMy44IDM5LjgtMTMuMSAzLjItMjYuOSA1LjktNDEuMiA4IDQuOS03LjcgOS44LTE1LjYgMTQuNC0yMy43IDQuNi04IDguOS0xNi4xIDEzLTI0LjF6TTQyMS4yIDQzMGMtOS4zLTkuNi0xOC42LTIwLjMtMjcuOC0zMiA5IC40IDE4LjIuNyAyNy41LjcgOS40IDAgMTguNy0uMiAyNy44LS43LTkgMTEuNy0xOC4zIDIyLjQtMjcuNSAzMnptLTc0LjQtNTguOWMtMTQuMi0yLjEtMjcuOS00LjctNDEtNy45IDMuNy0xMi45IDguMy0yNi4yIDEzLjUtMzkuNSA0LjEgOCA4LjQgMTYgMTMuMSAyNCA0LjcgOCA5LjUgMTUuOCAxNC40IDIzLjR6TTQyMC43IDE2M2M5LjMgOS42IDE4LjYgMjAuMyAyNy44IDMyLTktLjQtMTguMi0uNy0yNy41LS43LTkuNCAwLTE4LjcuMi0yNy44LjcgOS0xMS43IDE4LjMtMjIuNCAyNy41LTMyem0tNzQgNTguOWMtNC45IDcuNy05LjggMTUuNi0xNC40IDIzLjctNC42IDgtOC45IDE2LTEzIDI0LTUuNC0xMy40LTEwLTI2LjgtMTMuOC0zOS44IDEzLjEtMy4xIDI2LjktNS44IDQxLjItNy45em0tOTAuNSAxMjUuMmMtMzUuNC0xNS4xLTU4LjMtMzQuOS01OC4zLTUwLjYgMC0xNS43IDIyLjktMzUuNiA1OC4zLTUwLjYgOC42LTMuNyAxOC03IDI3LjctMTAuMSA1LjcgMTkuNiAxMy4yIDQwIDIyLjUgNjAuOS05LjIgMjAuOC0xNi42IDQxLjEtMjIuMiA2MC42LTkuOS0zLjEtMTkuMy02LjUtMjgtMTAuMnpNMzEwIDQ5MGMtMTMuNi03LjgtMTkuNS0zNy41LTE0LjktNzUuNyAxLjEtOS40IDIuOS0xOS4zIDUuMS0yOS40IDE5LjYgNC44IDQxIDguNSA2My41IDEwLjkgMTMuNSAxOC41IDI3LjUgMzUuMyA0MS42IDUwLTMyLjYgMzAuMy02My4yIDQ2LjktODQgNDYuOS00LjUtLjEtOC4zLTEtMTEuMy0yLjd6bTIzNy4yLTc2LjJjNC43IDM4LjItMS4xIDY3LjktMTQuNiA3NS44LTMgMS44LTYuOSAyLjYtMTEuNSAyLjYtMjAuNyAwLTUxLjQtMTYuNS04NC00Ni42IDE0LTE0LjcgMjgtMzEuNCA0MS4zLTQ5LjkgMjIuNi0yLjQgNDQtNi4xIDYzLjYtMTEgMi4zIDEwLjEgNC4xIDE5LjggNS4yIDI5LjF6bTM4LjUtNjYuN2MtOC42IDMuNy0xOCA3LTI3LjcgMTAuMS01LjctMTkuNi0xMy4yLTQwLTIyLjUtNjAuOSA5LjItMjAuOCAxNi42LTQxLjEgMjIuMi02MC42IDkuOSAzLjEgMTkuMyA2LjUgMjguMSAxMC4yIDM1LjQgMTUuMSA1OC4zIDM0LjkgNTguMyA1MC42LS4xIDE1LjctMjMgMzUuNi01OC40IDUwLjZ6TTMyMC44IDc4LjR6Ii8+DQogICAgICAgIDxjaXJjbGUgY3g9IjQyMC45IiBjeT0iMjk2LjUiIHI9IjQ1LjciLz4NCiAgICAgICAgPHBhdGggZD0iTTUyMC41IDc4LjF6Ii8+DQogICAgPC9nPg0KPC9zdmc+DQo=";
 	
@@ -772,16 +771,17 @@
 	
 	var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 	
-	var _reactIntl = __webpack_require__(1);
+	var _reactIntl = __webpack_require__(3);
 	
 	var _AppReducer = __webpack_require__(7);
 	
-	var _reactRouter = __webpack_require__(2);
+	var _reactRouter = __webpack_require__(1);
 	
-	var _reactFontawesome = __webpack_require__(3);
+	var _reactFontawesome = __webpack_require__(2);
 	
 	var _PostListItem = {
-	  "listView": "_359Y5s7pbdgshU4k2JWvTl",
+	  "full-height": "_1GjG4WUiwlKVAm29xdhUd-",
+	  "list-view": "_4UUgkjTIKasBiRWgL_2Uq",
 	  "edit-post-wrapper": "_3i7OyciAsEv6LVDBFOzNXQ",
 	  "edit-post-button": "_28MH_jrCf9XkXp2I8bJhk",
 	  "cancel-post-button": "_1Lc_VRAeFlwSWQjB5xHgUb",
@@ -911,7 +911,7 @@
 	        href: '#',
 	        onClick: _this.handleEditPost
 	      }, void 0, _ref2), _jsx('a', {
-	        className: _PostListItem2.default['cancel-post-button'] + ' ' + 'btn btn-danger',
+	        className: _PostListItem2.default['cancel-post-button'] + ' btn btn-danger',
 	        href: '#',
 	        onClick: _this.handleCancelPost
 	      }, void 0, _ref3));
@@ -919,12 +919,14 @@
 	
 	    _this.renderPost = function () {
 	      return _jsx('div', {
+	        className: 'container ' + _PostListItem2.default['full-height']
+	      }, void 0, _jsx('div', {
 	        className: _PostListItem2.default['single-post'] + ' ' + _PostListItem2.default['post-detail']
 	      }, void 0, _jsx(_reactRouter.Link, {
 	        to: '/',
-	        className: _PostListItem2.default['edit-post-button'] + ' ' + 'btn btn-primary'
+	        className: _PostListItem2.default['edit-post-button'] + ' btn btn-primary'
 	      }, void 0, ' Back'), _jsx('a', {
-	        className: _PostListItem2.default['edit-post-button'] + ' ' + 'btn btn-warning',
+	        className: _PostListItem2.default['edit-post-button'] + ' btn btn-warning',
 	        href: '#',
 	        onClick: _this.props.toggleEditPost
 	      }, void 0, _ref4, _ref5), _jsx('h3', {
@@ -933,13 +935,14 @@
 	        className: _PostListItem2.default['author-name']
 	      }, void 0, _ref6, ' ', _this.props.post.name), _jsx('p', {
 	        className: _PostListItem2.default['post-desc-inside']
-	      }, void 0, _this.props.post.content));
+	      }, void 0, _this.props.post.content)));
 	    };
 	
 	    _this.state = {
 	      name: _this.props.post.name,
 	      title: _this.props.post.title,
-	      content: _this.props.post.content
+	      content: _this.props.post.content,
+	      votes: _this.props.post.votes
 	    };
 	    return _this;
 	  }
@@ -1140,7 +1143,7 @@
 	  slug: { type: 'String', required: true },
 	  cuid: { type: 'String', required: true },
 	  dateAdded: { type: 'Date', default: Date.now, required: true },
-	  votes: { type: 'Number', required: true }
+	  votes: { type: 'Number', default: 0 }
 	});
 	
 	exports.default = _mongoose2.default.model('Post', postSchema);
@@ -1167,7 +1170,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactIntl = __webpack_require__(1);
+	var _reactIntl = __webpack_require__(3);
 	
 	var _reactRedux = __webpack_require__(4);
 	
@@ -1208,7 +1211,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouter = __webpack_require__(2);
+	var _reactRouter = __webpack_require__(1);
 	
 	var _App = __webpack_require__(42);
 	
@@ -1397,6 +1400,10 @@
 	router.route('/posts/:cuid').delete(PostController.deletePost);
 	// Update a post by cuid
 	router.route('/posts/:cuid').put(PostController.editPost);
+	
+	// Thumbs
+	router.route('/posts/:cuid/up').put(PostController.thumbUp);
+	router.route('/posts/:cuid/down').put(PostController.thumbDown);
 	
 	exports.default = router;
 
@@ -1644,7 +1651,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactFontawesome = __webpack_require__(3);
+	var _reactFontawesome = __webpack_require__(2);
 	
 	var _About = {
 	  "carousel-caption": "_-KLlRBr3oRRvYKGo5ZtcV",
@@ -1712,7 +1719,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactFontawesome = __webpack_require__(3);
+	var _reactFontawesome = __webpack_require__(2);
 	
 	var _About = {
 	  "carousel-caption": "_-KLlRBr3oRRvYKGo5ZtcV",
@@ -1781,7 +1788,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactFontawesome = __webpack_require__(3);
+	var _reactFontawesome = __webpack_require__(2);
 	
 	var _About = {
 	  "carousel-caption": "_-KLlRBr3oRRvYKGo5ZtcV",
@@ -1882,15 +1889,11 @@
 	
 	var _ref2 = _jsx('p', {}, void 0, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo natus doloribus a consectetur distinctio temporibus porro iusto dolores pariatur sit?');
 	
-	var _ref3 = _jsx('h5', {}, void 0, 'Programming is..');
+	var _ref3 = _jsx('p', {}, void 0, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo natus doloribus a consectetur distinctio temporibus porro iusto dolores pariatur sit?');
 	
 	var _ref4 = _jsx('p', {}, void 0, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo natus doloribus a consectetur distinctio temporibus porro iusto dolores pariatur sit?');
 	
-	var _ref5 = _jsx('h5', {}, void 0, 'Gaming is..');
-	
-	var _ref6 = _jsx('p', {}, void 0, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo natus doloribus a consectetur distinctio temporibus porro iusto dolores pariatur sit?');
-	
-	var _ref7 = _jsx('a', {
+	var _ref5 = _jsx('a', {
 	    className: 'carousel-control-prev',
 	    href: '#carouselExampleIndicators',
 	    role: 'button',
@@ -1902,7 +1905,7 @@
 	    className: 'sr-only'
 	}, void 0, 'Previous'));
 	
-	var _ref8 = _jsx('a', {
+	var _ref6 = _jsx('a', {
 	    className: 'carousel-control-next',
 	    href: '#carouselExampleIndicators',
 	    role: 'button',
@@ -1924,30 +1927,34 @@
 	    }, void 0, _jsx('div', {
 	        className: 'carousel-item active'
 	    }, void 0, _jsx('img', {
-	        className: _About2.default.image + ' ' + 'd-block w-100',
-	        src: 'https://images.pexels.com/photos/1002634/pexels-photo-1002634.jpeg?cs=srgb&dl=35mm-analog-analogue-1002634.jpg&fm=jpg',
+	        className: _About2.default.image + ' d-block w-100',
+	        src: 'https://res.cloudinary.com/dsgnpk/image/upload/v1539437246/BlogMERN/35mm-analog-analogue-1002634.jpg',
 	        alt: 'First slide'
 	    }), _jsx('div', {
-	        className: _About2.default["carousel-caption"] + ' ' + "carousel-caption d-none d-md-block"
+	        className: _About2.default['carousel-caption'] + ' carousel-caption d-none d-md-block'
 	    }, void 0, _jsx('h5', {
-	        className: _About2.default["caption-header"]
-	    }, void 0, 'Photography is..'), _ref2)), _jsx('div', {
+	        className: _About2.default['caption-header']
+	    }, void 0, 'Photography is...'), _ref2)), _jsx('div', {
 	        className: 'carousel-item'
 	    }, void 0, _jsx('img', {
-	        className: _About2.default.image + ' ' + 'd-block w-100',
-	        src: 'https://images.pexels.com/photos/951230/pexels-photo-951230.jpeg?cs=srgb&dl=background-book-coffee-951230.jpg&fm=jpg',
+	        className: _About2.default.image + ' d-block w-100',
+	        src: 'https://res.cloudinary.com/dsgnpk/image/upload/v1539437236/BlogMERN/background-book-coffee-951230.jpg',
 	        alt: 'Second slide'
 	    }), _jsx('div', {
-	        className: _About2.default["carousel-caption"] + ' ' + "carousel-caption d-none d-md-block"
-	    }, void 0, _ref3, _ref4)), _jsx('div', {
+	        className: _About2.default['carousel-caption'] + ' carousel-caption d-none d-md-block'
+	    }, void 0, _jsx('h5', {
+	        className: _About2.default['caption-header']
+	    }, void 0, 'Programming is..'), _ref3)), _jsx('div', {
 	        className: 'carousel-item'
 	    }, void 0, _jsx('img', {
-	        className: _About2.default.image + ' ' + 'd-block w-100',
-	        src: 'https://images.pexels.com/photos/807330/pexels-photo-807330.jpeg?cs=srgb&dl=controller-game-hands-807330.jpg&fm=jpg',
+	        className: _About2.default.image + ' d-block w-100',
+	        src: 'https://res.cloudinary.com/dsgnpk/image/upload/v1539437236/BlogMERN/controller-game-hands-807330.jpg',
 	        alt: 'Third slide'
 	    }), _jsx('div', {
-	        className: _About2.default["carousel-caption"] + ' ' + "carousel-caption d-none d-md-block"
-	    }, void 0, _ref5, _ref6))), _ref7, _ref8);
+	        className: _About2.default['carousel-caption'] + ' carousel-caption d-none d-md-block'
+	    }, void 0, _jsx('h5', {
+	        className: _About2.default['caption-header']
+	    }, void 0, 'Gaming is..'), _ref4))), _ref5, _ref6);
 	};
 	
 	exports.default = Carousel;
@@ -2100,8 +2107,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactIntl = __webpack_require__(1);
-	
 	var _Footer = {
 	  "footer": "_1oiRVDtQ6fOWkhBVWcRyE_"
 	};
@@ -2110,11 +2115,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var _ref = _jsx('p', {}, void 0, '\xA9 2016 \xB7 Hashnode \xB7 LinearBytes Inc.');
+	var _ref = _jsx('p', {}, void 0, '\xA9 2018 \xB7 DESIGN PK \xB7 ', _jsx('a', {
+	  href: 'https://portfoliosite',
+	  target: '_Blank'
+	}, void 0, 'Portfolio Site'));
 	
-	var _ref2 = _jsx('p', {}, void 0, _jsx(_reactIntl.FormattedMessage, {
-	  id: 'twitterMessage'
-	}), ' : ', _jsx('a', {
+	var _ref2 = _jsx('p', {}, void 0, 'Created with: ', _jsx('a', {
 	  href: 'https://twitter.com/@mern_io',
 	  target: '_Blank'
 	}, void 0, '@mern_io'));
@@ -2149,15 +2155,18 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouter = __webpack_require__(2);
+	var _reactRouter = __webpack_require__(1);
 	
-	var _reactIntl = __webpack_require__(1);
+	var _reactIntl = __webpack_require__(3);
+	
+	var _reactFontawesome = __webpack_require__(2);
 	
 	var _Header = {
 	  "header": "_3EGjKVGKCGTGQn_m_YASdF",
 	  "content": "_391cv5n_RFU0K9SBOjXDEt",
 	  "site-title": "_11V45Tl3_Hdy_ARI53CW9g",
-	  "container": "_2UvSMuY_zBp1rhZJpvZDaM"
+	  "container": "_2UvSMuY_zBp1rhZJpvZDaM",
+	  "add-post-button": "XrNjmGRHH_vMEgGeC3S75"
 	};
 	
 	var _Header2 = _interopRequireDefault(_Header);
@@ -2196,10 +2205,13 @@
 	  }, void 0, _jsx('h1', {
 	    className: _Header2.default['site-title']
 	  }, void 0, context.router.isActive('/', true) ? _ref : null, context.router.isActive('/about', true) ? _ref2 : null, context.router.isActive('/home', true) ? _ref3 : null), context.router.isActive('/', true) ? _jsx('button', {
-	    className: 'btn btn-primary',
+	    className: _Header2.default['add-post-button'] + ' btn btn-primary',
 	    href: '#',
 	    onClick: props.toggleAddPost
-	  }, void 0, _ref4) : null)));
+	  }, void 0, _ref4, _jsx(_reactFontawesome.FontAwesomeIcon, {
+	    className: _Header2.default.plus,
+	    icon: 'plus'
+	  })) : null)));
 	}
 	
 	Header.contextTypes = {
@@ -2230,11 +2242,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouter = __webpack_require__(2);
+	var _reactRouter = __webpack_require__(1);
 	
-	var _reactIntl = __webpack_require__(1);
+	var _reactIntl = __webpack_require__(3);
 	
-	var _reactFontawesome = __webpack_require__(3);
+	var _reactFontawesome = __webpack_require__(2);
 	
 	var _Navbar = {
 	  "header": "_18I3vHfMSP9gwGtuGdmsfg",
@@ -2325,9 +2337,9 @@
 	  }, void 0, _jsx('ul', {
 	    className: 'navbar-nav mr-auto'
 	  }, void 0, _ref2, _ref3, _ref4, _jsx('li', {
-	    className: 'nav-item dropdown'
+	    className: 'text-right nav-item dropdown'
 	  }, void 0, _ref5, _jsx('div', {
-	    className: _Navbar2.default['dropdown-menu'] + " " + "dropdown-menu"
+	    className: _Navbar2.default['dropdown-menu'] + ' dropdown-menu'
 	  }, void 0, languageNodes))))));
 	}
 	
@@ -2404,7 +2416,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactIntl = __webpack_require__(1);
+	var _reactIntl = __webpack_require__(3);
 	
 	var _PostCreateWidget = {
 	  "form": "_1_WEV3z8MyISJ_IVeQGbfN",
@@ -2496,7 +2508,6 @@
 	});
 	
 	var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
-	
 	// Import Components
 	
 	
@@ -2504,12 +2515,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _PostListItem = __webpack_require__(49);
-	
-	var _PostListItem2 = _interopRequireDefault(_PostListItem);
-	
-	({
-	  "listView": "_359Y5s7pbdgshU4k2JWvTl",
+	var _PostListItem = {
+	  "full-height": "_1GjG4WUiwlKVAm29xdhUd-",
+	  "list-view": "_4UUgkjTIKasBiRWgL_2Uq",
 	  "edit-post-wrapper": "_3i7OyciAsEv6LVDBFOzNXQ",
 	  "edit-post-button": "_28MH_jrCf9XkXp2I8bJhk",
 	  "cancel-post-button": "_1Lc_VRAeFlwSWQjB5xHgUb",
@@ -2529,23 +2537,29 @@
 	  "thumbs": "btSrW-jkNbAiMEdFnkPOl",
 	  "thumbUp": "_3YX-d-1m6Ebp5vkaFzOCca",
 	  "thumbDown": "dHEY839LnKqA1s-UAX0XA"
-	});
+	};
+	
+	var _PostListItem2 = _interopRequireDefault(_PostListItem);
+	
+	var _PostListItem3 = __webpack_require__(49);
+	
+	var _PostListItem4 = _interopRequireDefault(_PostListItem3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function PostList(props) {
 	  return _jsx('div', {
-	    className: 'listView container'
+	    className: _PostListItem2.default['list-view'] + ' container'
 	  }, void 0, props.posts.map(function (post) {
-	    return _jsx(_PostListItem2.default, {
+	    return _jsx(_PostListItem4.default, {
 	      post: post,
 	      onDelete: function onDelete() {
 	        return props.handleDeletePost(post.cuid);
 	      },
-	      thumbUp: function thumbUp() {
+	      onThumbUp: function onThumbUp() {
 	        return props.handleThumbUp(post.cuid, post.votes);
 	      },
-	      thumbDown: function thumbDown() {
+	      onThumbDown: function onThumbDown() {
 	        return props.handleThumbDown(post.cuid, post.votes);
 	      }
 	    }, post.cuid);
@@ -2574,14 +2588,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouter = __webpack_require__(2);
+	var _reactRouter = __webpack_require__(1);
 	
-	var _reactIntl = __webpack_require__(1);
+	var _reactIntl = __webpack_require__(3);
 	
-	var _reactFontawesome = __webpack_require__(3);
+	var _reactFontawesome = __webpack_require__(2);
 	
 	var _PostListItem = {
-	  "listView": "_359Y5s7pbdgshU4k2JWvTl",
+	  "full-height": "_1GjG4WUiwlKVAm29xdhUd-",
+	  "list-view": "_4UUgkjTIKasBiRWgL_2Uq",
 	  "edit-post-wrapper": "_3i7OyciAsEv6LVDBFOzNXQ",
 	  "edit-post-button": "_28MH_jrCf9XkXp2I8bJhk",
 	  "cancel-post-button": "_1Lc_VRAeFlwSWQjB5xHgUb",
@@ -2638,12 +2653,12 @@
 	  }, void 0, _ref2, _ref3)), _jsx('div', {
 	    className: _PostListItem2.default.thumbs
 	  }, void 0, _jsx('span', {
-	    onClick: props.thumbUp
+	    onClick: props.onThumbUp
 	  }, void 0, _jsx(_reactFontawesome.FontAwesomeIcon, {
 	    icon: 'arrow-alt-circle-up',
 	    className: _PostListItem2.default.thumbUp
 	  })), _jsx('span', {}, void 0, 'Votes: ', props.post.votes), _jsx('span', {
-	    onClick: props.thumbDown
+	    onClick: props.onThumbDown
 	  }, void 0, _jsx(_reactFontawesome.FontAwesomeIcon, {
 	    icon: 'arrow-alt-circle-down',
 	    className: _PostListItem2.default.thumbDown
@@ -2761,6 +2776,8 @@
 	exports.getPost = getPost;
 	exports.deletePost = deletePost;
 	exports.editPost = editPost;
+	exports.thumbUp = thumbUp;
+	exports.thumbDown = thumbDown;
 	
 	var _post = __webpack_require__(21);
 	
@@ -2812,7 +2829,6 @@
 	  newPost.title = (0, _sanitizeHtml2.default)(newPost.title);
 	  newPost.name = (0, _sanitizeHtml2.default)(newPost.name);
 	  newPost.content = (0, _sanitizeHtml2.default)(newPost.content);
-	  newPost.votes = (0, _sanitizeHtml2.default)(newPost.votes);
 	
 	  newPost.slug = (0, _limax2.default)(newPost.title.toLowerCase(), { lowercase: true });
 	  newPost.cuid = (0, _cuid2.default)();
@@ -2863,6 +2879,24 @@
 	      res.status(500).send(err);
 	    }
 	    res.json({ post: post });
+	  });
+	}
+	
+	function thumbUp(req, res) {
+	  _post2.default.findOneAndUpdate({ cuid: req.params.cuid }, { $inc: { voteCount: 1 } }, function (err) {
+	    if (err) {
+	      res.status(500).send(err);
+	    }
+	    res.status(200).end();
+	  });
+	}
+	
+	function thumbDown(req, res) {
+	  _post2.default.findOneAndUpdate({ cuid: req.params.cuid }, { $inc: { voteCount: -1 } }, function (err) {
+	    if (err) {
+	      res.status(500).send(err);
+	    }
+	    res.status(200).end();
 	  });
 	}
 
@@ -2932,7 +2966,7 @@
 	
 	var _server = __webpack_require__(33);
 	
-	var _reactRouter = __webpack_require__(2);
+	var _reactRouter = __webpack_require__(1);
 	
 	var _reactHelmet = __webpack_require__(6);
 	
@@ -3007,7 +3041,7 @@
 	  var assetsManifest = process.env.webpackAssets && JSON.parse(process.env.webpackAssets);
 	  var chunkManifest = process.env.webpackChunkAssets && JSON.parse(process.env.webpackChunkAssets);
 	
-	  return '\n    <!doctype html>\n    <html>\n      <head>\n        ' + head.base.toString() + '\n        ' + head.title.toString() + '\n        ' + head.meta.toString() + '\n        ' + head.link.toString() + '\n        ' + head.script.toString() + '\n\n        ' + (isProdMode ? '<link rel=\'stylesheet\' href=\'' + assetsManifest['/app.css'] + '\' />' : '') + '\n        <link href=\'https://fonts.googleapis.com/css?family=Lato:400,300,700\' rel=\'stylesheet\' type=\'text/css\'/>\n      </head>\n      <body>\n        <div id="root">' + html + '</div>\n        <script>\n          window.__INITIAL_STATE__ = ' + JSON.stringify(initialState) + ';\n          ' + (isProdMode ? '//<![CDATA[\n          window.webpackManifest = ' + JSON.stringify(chunkManifest) + ';\n          //]]>' : '') + '\n        </script>\n        <script src=\'' + (isProdMode ? assetsManifest['/vendor.js'] : '/vendor.js') + '\'></script>\n        <script src=\'' + (isProdMode ? assetsManifest['/app.js'] : '/app.js') + '\'></script>\n      </body>\n    </html>\n  ';
+	  return '\n    <!doctype html>\n    <html>\n      <head>\n        ' + head.base.toString() + '\n        ' + head.title.toString() + '\n        ' + head.meta.toString() + '\n        ' + head.link.toString() + '\n        ' + head.script.toString() + '\n\n        ' + (isProdMode ? '<link rel=\'stylesheet\' href=\'' + assetsManifest['/app.css'] + '\' />' : '') + '\n        <link href=\'https://fonts.googleapis.com/css?family=Lato:400,300,700\' rel=\'stylesheet\' type=\'text/css\'/>\n        <link rel="shortcut icon" href="https://res.cloudinary.com/hashnode/image/upload/v1455629445/static_imgs/mern/mern-favicon-circle-fill.png" type="image/png" />\n      </head>\n      <body>\n        <div id="root">' + html + '</div>\n        <script>\n          window.__INITIAL_STATE__ = ' + JSON.stringify(initialState) + ';\n          ' + (isProdMode ? '//<![CDATA[\n          window.webpackManifest = ' + JSON.stringify(chunkManifest) + ';\n          //]]>' : '') + '\n        </script>\n        <script src=\'' + (isProdMode ? assetsManifest['/vendor.js'] : '/vendor.js') + '\'></script>\n        <script src=\'' + (isProdMode ? assetsManifest['/app.js'] : '/app.js') + '\'></script>\n      </body>\n    </html>\n  ';
 	};
 	
 	var renderError = function renderError(err) {
